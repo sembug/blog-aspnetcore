@@ -1,0 +1,12 @@
+@model IEnumerable<Blog.Models.Category>
+
+<div class="widget widget_categories group">
+    <h3>Categories.</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="#" title="">@item.Title</a> (1)</li>
+        }
+    </ul>
+</div>
+

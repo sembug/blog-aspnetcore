@@ -1,0 +1,13 @@
+@model IEnumerable<Blog.Models.Tag>
+
+<div class="widget widget_tags">
+   <h3>Post Tags.</h3>
+
+   <div class="tagcloud group">
+      @foreach (var item in Model)
+      {
+          <a href="#">@item.Title</a>
+      }
+   </div>
+
+</div>

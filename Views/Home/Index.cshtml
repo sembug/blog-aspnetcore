@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+    <div id="main" class="eight columns">
+        @foreach(var item in Model)
+        {
+            <article class="entry">
+
+                <header class="entry-header">
+
+                    <h2 class="entry-title">
+                        <a href="/home/post/@item.ID" title="@item.Title">@item.Title</a>
+                    </h2>
+
+                    <div class="entry-meta">
+                        <ul>
+                            <li>@String.Format("{0:dd MMM yyyy}",item.Publish)</li>
+                            <span class="meta-sep">&bull;</span>
+                            <li><a href="#" title="" rel="category tag">@item.Category.Title</a></li>
+                            <span class="meta-sep">&bull;</span>
+                            <li>@item.Author</li>
+                        </ul>
+                    </div>
+
+                </header>
+
+                <div class="entry-content">
+                    @item.Body.Substring(0, Math.Min(item.Body.Length, 250));
+                    <br />
+                    <a href="/home/post/@item.ID">More</a>
+                </div>
+
+            </article> <!-- end entry -->
+        }
+
+
+    </div> <!-- end main -->
+
+
+    @await Html.PartialAsync("_Sidebar")
+
+</div> <!-- end row -->
+

@@ -1,0 +1,57 @@
+<div class="row">
+
+    <div id="main" class="eight columns">
+
+        <article class="entry">
+
+                <header class="entry-header">
+
+                    <h2 class="entry-title">
+                        @Model.Title
+                    </h2>
+
+                    <div class="entry-meta">
+                        <ul>
+                            <li>@String.Format("{0:dd MMM yyyy}",Model.Publish)</li>
+                            <span class="meta-sep">&bull;</span>
+                            <li>
+                                <a href="#" title="" rel="category tag">@Model.Category.Title</a>
+                            </li>
+                            <span class="meta-sep">&bull;</span>
+                            <li>@Model.Author</li>
+                        </ul>
+                    </div>
+
+                </header>
+
+                <div class="entry-content-media">
+                    <div class="post-thumb">
+                        <img src="~/images/m-farmerboy.jpg">
+                    </div>
+                </div>
+
+                <div class="entry-content">
+                    <markdown>@Model.Body</markdown>
+                </div>
+
+                <p class="tags">
+                    <span>Tagged in </span>:
+                    @foreach(var tag in Model.PostTags) 
+                    {
+                        <a href="#">@tag.Tag.Title</a>
+                    }
+                </p>
+
+                <ul class="post-nav group">
+                    <li class="prev"><a rel="prev" href="#"><strong>Previous Article</strong> Duis Sed Odio Sit Amet Nibh Vulputate</a></li>
+                        <li class="next"><a rel="next" href="#"><strong>Next Article</strong> Morbi Elit Consequat Ipsum</a></li>
+                </ul>
+
+            </article>
+
+
+    </div> <!-- main End -->
+
+    {% include '_sidebar.html' %}
+
+    </div> <!-- end row -->
