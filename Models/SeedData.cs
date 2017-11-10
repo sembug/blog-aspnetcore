@@ -38,7 +38,7 @@ namespace Blog.Models
                 context.Posts.Add(
                      new Post
                      {
-                        Title  = "Post",
+                        Title  = "View Components",
                         Slug = "post",
                         Author = "Roberto",
                         Publish = DateTime.Now,
