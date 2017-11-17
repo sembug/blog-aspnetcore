@@ -18,8 +18,8 @@ namespace Blog.Models
         public string Body { get; set; }
 
         public int  CategoryId { get; set; }
-
-        public List<PostTag> PostTags { get; set; }
         public virtual Category Category { get; set; } 
+
+        public virtual List<PostTag> PostTags { get; set; }
     }
 }

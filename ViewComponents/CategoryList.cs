@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Models;
+using Blog.ViewModels;
 
 namespace Blog.ViewComponents
 {
@@ -21,9 +22,16 @@ namespace Blog.ViewComponents
             var items = await GetItemsAsync();
             return View(items);
         }
-        private Task<List<Category>> GetItemsAsync()
+        private Task<List<CategoryViewModel>> GetItemsAsync()
         {
-            return _context.Categories.ToListAsync();
+            return _context.Categories
+                .Include(c => c.Posts)
+                .Select(r => new CategoryViewModel
+                {
+                    Category = r,
+                    PostsCount = r.Posts.Count()
+                })
+                .ToListAsync();
         }
     }
 }

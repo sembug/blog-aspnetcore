@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Post by Tag";
+}
+
+<div class="row">
+
+    <div id="main" class="eight columns">
+
+        <section class="page">					
+
+                <h2>Recently in @Model.Title:</h2> 
+                
+               
+                <div class="row archive-list">
+
+                    <div class="twelve columns">
+
+                    <ul>
+                        @foreach(var item in Model.PostTags)
+                        {
+                            <li><a href="/post/@item.Post.ID" title="@item.Post.Title">@item.Post.Title</a></li>
+                        }
+                    </ul>								
+
+                    </div>
+                </div> <!-- end row -->			      	
+
+            </section> <!-- End page -->
+
+    </div> <!-- End main -->
+
+
+    @await Html.PartialAsync("_Sidebar")
+
+</div> <!-- end row -->

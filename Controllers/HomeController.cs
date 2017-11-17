@@ -31,12 +31,49 @@ namespace Blog.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts.Include(c => c.Category).SingleOrDefaultAsync(m => m.ID == id);
+            var post = await _context.Posts
+                .Include(c => c.Category)
+                .Include(e => e.PostTags)
+                    .ThenInclude(t => t.Tag)
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (post == null)
             {
                 return NotFound();
             }
             return View(post);
+        }
+
+        public async Task<IActionResult> Category(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Categories.Include(c => c.Posts).SingleOrDefaultAsync(m => m.ID == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+
+        public async Task<IActionResult> Tag(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tag = await _context.Tags
+                .Include(c => c.PostTags)
+                    .ThenInclude(t => t.Post)
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            return View(tag);
         }
 
         public IActionResult Error()

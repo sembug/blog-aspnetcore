@@ -51,10 +51,21 @@ namespace Blog
                     name: "admin",
                     template: "admin/{controller}/{action}",
                     defaults: new { controller = "Post", action = "Index" });
+                
                 routes.MapRoute(
-                    name: "post-detail",
+                    name: "post",
                     template: "post/{id}",
                     defaults: new { controller = "Home", action = "Post" });
+
+                routes.MapRoute(
+                    name: "category",
+                    template: "category/{id}",
+                    defaults: new { controller = "Home", action = "Category" });
+
+                routes.MapRoute(
+                    name: "tag",
+                    template: "tag/{id}",
+                    defaults: new { controller = "Home", action = "Tag" });    
   
                 routes.MapRoute(
                     name: "default",
